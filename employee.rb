@@ -24,7 +24,7 @@ class Manager < Employee
         total_salary = 0
         @subordinates.each do |sub|
           if sub.is_a?(Manager)
-            total_salary += sub.bonus(multiplier) + sub.salary* multiplier
+            total_salary += sub.bonus(multiplier) + sub.salary * multiplier
           else
             total_salary += sub.salary * multiplier
           end
