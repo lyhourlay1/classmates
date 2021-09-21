@@ -1,3 +1,4 @@
+require 'byebug'
 class Employee
   attr_reader :salary
     def initialize(name, title, salary, boss)
@@ -19,17 +20,16 @@ class Manager < Employee
         @subordinates=subordinates
     end
     def bonus(multiplier)
+        #debugger
         total_salary = 0
         @subordinates.each do |sub|
           if sub.is_a?(Manager)
-            total_salary += sub.bonus(multiplier)
+            total_salary += sub.bonus(multiplier) + sub.salary* multiplier
           else
             total_salary += sub.salary * multiplier
           end
         end
         total_salary
-        # total = total_salary.inject { |acc, n| acc + n }
-        # bonus = total * multiplier
     end
 end
 
@@ -39,5 +39,5 @@ darren= Manager.new('Darren', 'TA Manager', 78000, 'Ned',[david, shawna])
 ned= Manager.new('Ned', 'Founder', 1000000, nil, [darren])
 
 p ned.bonus(5) #500,000
-# p darren.bonus(4) #88,000
-# p david.bonus(3) #30,000
+p darren.bonus(4) #88,000
+p david.bonus(3) #30,000
