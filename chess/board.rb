@@ -1,4 +1,9 @@
 require_relative 'piece'
+require_relative 'knight_king'
+require_relative 'null_piece'
+require_relative 'pawn'
+require_relative 'rook_bishop_queen'
+require 'byebug'
 class Board
     def initialize
         @rows = Array.new(8) {Array.new(8)}
@@ -10,7 +15,7 @@ class Board
       rooks= [[0,0],[0,7],[7,0],[7,7]]
       kings =[[0,3],[7,3]]
       queens=[[0,4],[7,4]]
-      knights=[[0,1], [0,6], [7,1],[7.6]]
+      knights=[[0,1], [0,6], [7,1],[7,6]]
       bishops=[[0,2],[0,5],[7,2],[7,5]]
 
       @rows.each_with_index do |row, i|
@@ -21,9 +26,11 @@ class Board
           elsif i==6
             self[position]=(Pawn.new("White", self, position))
           elsif i>=2 && i<=5
+            
             self[position] = NullPiece.instance
           elsif rooks.include?(position)
             if i == 0
+              
               self[position]=(Rook.new("Black", self, position))
             else
               self[position]=(Rook.new("White", self, position))
@@ -57,7 +64,18 @@ class Board
       end
     end
 
-    def 
+    def render
+      puts "  0 1 2 3 4 5 6 7 "
+      @rows.each.with_index do |row,i|
+        print_row=i.to_s
+        row.each_with_index do |square, j|
+          position = [i,j]
+          print_row << " "+ self[position].symbol.to_s
+        end
+        puts print_row
+      end
+      return nil
+    end
 
     def [](pos)
         @rows[pos[0]][pos[1]]

@@ -17,7 +17,7 @@ class Knight < Piece
   end
 
   def symbol
-    :K
+    :N
   end
 
   private
@@ -35,7 +35,7 @@ class King < Piece
     end
     
     def symbol
-        :Ki 
+        :K
     end
 
     private

@@ -27,16 +27,16 @@ module Slideable
 
   def grow_unblocked_moves_in_dir(dx, dy)
     #Should stop either before your own piece, or after taking opponents piece
-    next = []
+    next_arr = []
     until @board[dx, dy].symbol != :N
       dx += @position[0]
       dy += @position[1]
-      next << [dx, dy]
+      next_arr << [dx, dy]
     end
     if @board[dx, dy].color == self.color
-      next.pop
+      next_arr.pop
     end
-    next
+    next_arr
   end
 end
 
