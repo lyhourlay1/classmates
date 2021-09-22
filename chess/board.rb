@@ -5,6 +5,7 @@ require_relative 'pawn'
 require_relative 'rook_bishop_queen'
 require 'byebug'
 class Board
+    attr_reader :rows
     def initialize
         @rows = Array.new(8) {Array.new(8)}
         @null_piece = nil
@@ -62,19 +63,6 @@ class Board
           end
         end
       end
-    end
-
-    def render
-      puts "  0 1 2 3 4 5 6 7 "
-      @rows.each.with_index do |row,i|
-        print_row=i.to_s
-        row.each_with_index do |square, j|
-          position = [i,j]
-          print_row << " "+ self[position].symbol.to_s
-        end
-        puts print_row
-      end
-      return nil
     end
 
     def [](pos)
