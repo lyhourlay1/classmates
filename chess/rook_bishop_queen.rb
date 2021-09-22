@@ -3,15 +3,20 @@ module Slideable
   DIAGONAL_DIRS = [[1,1],[-1,-1],[1,-1],[-1,1]]
 
   def horizontal_dirs
-
+    HORIZONTAL_DIRS
   end
 
   def diagonal_dirs
-
+    DIAGONAL_DIRS
   end
 
   def moves
     #return array of all possibel moves you could 
+    next_move = []
+    self.move_dirs.each do |direction|
+      next_move << [@position[0] + direction[0], @position[1] + direction[1]]
+    end
+    next_move
   end
 
   private
@@ -21,7 +26,17 @@ module Slideable
   # end
 
   def grow_unblocked_moves_in_dir(dx, dy)
-
+    #Should stop either before your own piece, or after taking opponents piece
+    next = []
+    until @board[dx, dy].symbol != :N
+      dx += @position[0]
+      dy += @position[1]
+      next << [dx, dy]
+    end
+    if @board[dx, dy].color == self.color
+      next.pop
+    end
+    next
   end
 end
 
@@ -37,7 +52,7 @@ class Rook < Piece
   def move_dirs
     #Rook moves in a straight vertical or horizontal direction
     #put all the possible moving indices 
-
+    self.horizontal_dirs
   end
 
 end
