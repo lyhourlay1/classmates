@@ -7,33 +7,57 @@ class Board
     end
 
     def populate
-        rooks= [[0,0],[0,7],[7,0],[7,7]]
-        kings =[[0,3],[7,3]]
-        queens=[[0,4],[7,4]]
-        knights=[[0,1], [0,6], [7,1],[7.6]]
-        bishops=[[0,2],[0,5],[7,2],[7,5]]
+      rooks= [[0,0],[0,7],[7,0],[7,7]]
+      kings =[[0,3],[7,3]]
+      queens=[[0,4],[7,4]]
+      knights=[[0,1], [0,6], [7,1],[7.6]]
+      bishops=[[0,2],[0,5],[7,2],[7,5]]
 
-        @rows.each_with_index do |row, i|
-            row.each_with_index do |square, j|
-                position = [i, j]
-                if i==6 || i==1
-                    self[position]=(Piece.new("Pawn"))
-                elsif i>=2 && i<=5
-                    self[position]=nil
-                elsif rooks.include?(position)
-                    self[position]=(Piece.new("Rook"))
-                elsif knights.include?(position)
-                    self[position]=(Piece.new("Knight"))
-                elsif bishops.include?(position)
-                    self[position]=(Piece.new("Bishop"))
-                elsif kings.include?(position)
-                    self[position]=(Piece.new("King"))
-                elsif queens.include?(position)
-                    self[position]=(Piece.new("Queen"))
-                end
+      @rows.each_with_index do |row, i|
+        row.each_with_index do |square, j|
+          position = [i, j]
+          if i==1
+            self[position]=(Pawn.new("Black", self, position))
+          elsif i==6
+            self[position]=(Pawn.new("White", self, position))
+          elsif i>=2 && i<=5
+            self[position] = NullPiece.instance
+          elsif rooks.include?(position)
+            if i == 0
+              self[position]=(Rook.new("Black", self, position))
+            else
+              self[position]=(Rook.new("White", self, position))
             end
+          elsif knights.include?(position)
+            if i == 0
+              self[position]=(Knight.new("Black", self, position))
+            else
+              self[position]=(Knight.new("White", self, position))
+            end
+          elsif bishops.include?(position)
+            if i == 0
+              self[position]=(Bishop.new("Black", self, position))
+            else
+              self[position]=(Bishop.new("White", self, position))
+            end
+          elsif kings.include?(position)
+            if i == 0
+              self[position]=(King.new("Black", self, position))
+            else
+              self[position]=(King.new("White", self, position))
+            end
+          elsif queens.include?(position)
+            if i == 0
+              self[position]=(Queen.new("Black", self, position))
+            else
+              self[position]=(Queen.new("White", self, position))
+            end
+          end
         end
+      end
     end
+
+    def 
 
     def [](pos)
         @rows[pos[0]][pos[1]]
@@ -53,37 +77,37 @@ class Board
         self[end_pos]= moved_piece
     end
 
-    def valid_pos?(pos)
-        # if !self[pos].is_a?(Piece)
-        #     raise "Invalid position"
-        #     en
-    end
+    # def valid_pos?(pos)
+    #     # if !self[pos].is_a?(Piece)
+    #     #     raise "Invalid position"
+    #     #     en
+    # end
 
-    def add_piece(piece, pos)
+    # def add_piece(piece, pos)
 
-    end
+    # end
 
-    def checkmate?(color)
+    # def checkmate?(color)
 
-    end
+    # end
 
-    def in_check?(color)
+    # def in_check?(color)
 
-    end
+    # end
 
-    def find_king(color)
+    # def find_king(color)
 
-    end
+    # end
 
-    def pieces
+    # def pieces
 
-    end
+    # end
 
-    def dup
+    # def dup
 
-    end
+    # end
 
-    def move_piece!(color, start_pos, end_pos)
+    # def move_piece!(color, start_pos, end_pos)
 
-    end
+    # end
 end

@@ -42,6 +42,11 @@ end
 
 class Rook < Piece
   include Slideable
+
+
+  def initialize(color, board, position)
+    super(color, board, position)
+  end
   
   def symbol
     :R
@@ -57,8 +62,13 @@ class Rook < Piece
 
 end
 
-class Bishop <Piece
+class Bishop < Piece
   include Slideable
+
+  def initialize(color, board, position)
+    super(color, board, position)
+  end
+
   def symbol
     :B
   end
@@ -71,10 +81,17 @@ end
 
 class Queen < Piece
   include Slideable
+
+  def initialize(color, board, position)
+    super(color, board, position)
+  end
+
   def symbol
     :Q
   end
+
   private
+  
   def move_dirs
     self.horizontal_dirs + self.diagonal_dirs
   end

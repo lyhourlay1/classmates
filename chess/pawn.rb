@@ -1,9 +1,13 @@
 class Pawn < Piece
+    def initialize(color, board, position)
+      super(color, board, position)
+    end
     def symbol
         :P 
     end
 
     def moves
+      forward_steps + side_attacks
     end
 
     private

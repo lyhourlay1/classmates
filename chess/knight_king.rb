@@ -11,6 +11,11 @@ end
 
 class Knight < Piece
   include Stepable
+
+  def initialize(color, board, position)
+    super(color, board, position)
+  end
+
   def symbol
     :K
   end
@@ -24,6 +29,11 @@ end
 
 class King < Piece
     include Stepable
+
+    def initialize(color, board, position)
+      super(color, board, position)
+    end
+    
     def symbol
         :Ki 
     end
