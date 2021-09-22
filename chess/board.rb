@@ -19,7 +19,7 @@ class Board
                 if i==6 || i==1
                     self[position]=(Piece.new("Pawn"))
                 elsif i>=2 && i<=5
-                     self[position]=(nil)
+                    self[position]=nil
                 elsif rooks.include?(position)
                     self[position]=(Piece.new("Rook"))
                 elsif knights.include?(position)
@@ -44,13 +44,18 @@ class Board
     end
 
     def move_piece( start_pos, end_pos)
+        if !self[start_pos].is_a?(Piece)
+            raise "Invalid position"
+        elsif start_pos[0] < 0 || start_pos[0] > 7 || end_pos[0] < 0 || end_pos[0] > 7
+        end
         moved_piece=@rows[start_pos[0]][start_pos[1]]
-        self[start_pos[0],start_pos[1]]= @rows[end_pos[0]][end_pos[1]]
-        self[end_pos[0],end_pos[1]]= moved_piece
+        self[start_pos]= @rows[end_pos[0]][end_pos[1]]
+        self[end_pos]= moved_piece
     end
 
     def valid_pos?(pos)
-
+        if !self[pos].is_a?(Piece)
+            raise "Invalid position"
     end
 
     def add_piece(piece, pos)
