@@ -14,7 +14,7 @@ module Slideable
     #return array of all possibel moves you could 
     next_move = []
     self.move_dirs.each do |direction|
-      next_move << [@position[0] + direction[0], @position[1] + direction[1]]
+      next_move += self.grow_unblocked_moves_in_dir(direction[0],direction[1])
     end
     next_move
   end
@@ -55,4 +55,27 @@ class Rook < Piece
     self.horizontal_dirs
   end
 
+end
+
+class Bishop <Piece
+  include Slideable
+  def symbol
+    :B
+  end
+
+  private
+  def move_dirs
+    self.diagonal_dirs
+  end
+end
+
+class Queen < Piece
+  include Slideable
+  def symbol
+    :Q
+  end
+  private
+  def move_dirs
+    self.horizontal_dirs + self.diagonal_dirs
+  end
 end
