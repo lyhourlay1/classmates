@@ -85,14 +85,14 @@ class Board
         @rows[pos[0]][pos[1]] = value
     end
 
-    def move_piece( start_pos, end_pos)
-        if !self[start_pos].is_a?(Piece)
-            raise "Invalid position"
-        # elsif start_pos[0] < 0 || start_pos[0] > 7 || end_pos[0] < 0 || end_pos[0] > 7
-        end
-        moved_piece=@rows[start_pos[0]][start_pos[1]]
-        self[start_pos]= @rows[end_pos[0]][end_pos[1]]
-        self[end_pos]= moved_piece
+    def move_piece(color, start_pos, end_pos)
+      if !self[start_pos].is_a?(Piece) 
+        raise "Invalid position"
+      # elsif start_pos[0] < 0 || start_pos[0] > 7 || end_pos[0] < 0 || end_pos[0] > 7
+      end
+      moved_piece = @rows[start_pos[0]][start_pos[1]]
+      self[end_pos] = moved_piece
+      self[start_pos] = NullPiece.instance
     end
 
     # def valid_pos?(pos)

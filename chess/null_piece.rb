@@ -5,8 +5,13 @@ class NullPiece < Piece
     
     def initialize
     end
+
+    def color
+      "Grey"
+    end
+    
     def symbol
-        :X
+      :X
     end
     
 end
