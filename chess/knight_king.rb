@@ -21,3 +21,15 @@ class Knight < Piece
     directions = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]]
   end
 end
+
+class King < Piece
+    include Stepable
+    def symbol
+        :Ki 
+    end
+
+    private
+    def move_diffs
+        directions =[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]]
+    end
+end
