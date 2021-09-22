@@ -17,10 +17,22 @@ class Pawn < Piece
     end
 
     def forward_dir
+      if self.color== "Black"
+        return 1
+      elsif self.color=="White"
+        return -1
+      end
     end
 
     def forward_steps
-
+      current_X= self.position[0]
+      current_y= self.position[1]
+      direction = forward_dir
+      if at_start_row?
+        return[[current_X+direction, current_y],[current_X+(2*direction), current_y]]
+      else
+        return[[current_X+direction, current_y]]
+      end
     end
 
     def side_attacks
